@@ -1,7 +1,7 @@
 import Vapor
 import HTTP
 
-class Gate {
+public class Gate {
     
     public static let error = Abort(
         .forbidden,
