@@ -16,48 +16,48 @@
             </div>
         </section>
     </div>
-    
+
     <div class="core-layout__page">
         <div class="core-layout__sidebar-wrapper">
             <section class="core-layout__sidebar">
-                
+
                 <div class="core-layout__sidebar-mobile-navigation">
                     #embed("Layout/Partials/Navigation/navigation-mobile")
                 </div>
-                
+
                 <div class="sidebar sidebar__navigation">
-                    
+
                     <div class="sidebar__navigation-top">
                         #import("navigation-top")
                     </div>
-                    
+
                     <div class="sidebar__navigation-middle">
                         <nav class="list-group list-group-inverse">
                             #embed("Layout/Partials/Navigation/navigation")
                         </nav>
                     </div>
-                    
+
                     <div class="sidebar__navigation-bottom">
                         #import("navigation-bottom")
                     </div>
-                    
+
                 </div>
             </section>
         </div>
-        
+
         <section class="core-layout__content">
-            
+
             <div class="page-header">
                 #embed("Layout/Partials/Elements/alerts")
                 <div class="page-header__breadcrumbs">
                     <ol class="breadcrumb">
                         <li>
-                            <a href="/admin/dashboard">Dashboard</a>
+                            <a href="/dashboard">Dashboard</a>
                         </li>
                         #import("breadcrumbs")
                     </ol>
                 </div>
-                
+
                 <div class="page-header__top-section">
                     #import("page-header")
                 </div>

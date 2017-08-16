@@ -1,5 +1,5 @@
 <div class="application-brand">
-    <a class="logo" href="/admin/dashboard">
+    <a class="logo" href="/dashboard">
         #embed("Layout/Partials/Elements/logo")
     </a>
     <h1 class="application-title">

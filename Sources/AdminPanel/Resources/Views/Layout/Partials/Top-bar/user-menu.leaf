@@ -10,7 +10,7 @@
     <div class="dropdown-menu dropdown-inverse animate-expand align-right">
         <div class="dropdown-content">
             <p class="dropdown-content__title">User</p>
-            
+
             <div class="user">
                 <div class="user__profile">
                     <img class="user__info-avatar img-responsive img-circle" src="#(request.storage.authedBackendUser.imageUrl)">
@@ -25,11 +25,11 @@
                 </div>
             </div>
             <div class="user-actions">
-                <a href="/admin/backend_users/logout" class="btn btn-sm btn-transparent user__sign-out">
+                <a href="/backend_users/logout" class="btn btn-sm btn-transparent user__sign-out">
                     <i class="fa fa-sign-out"></i>
                     Sign out
                 </a>
-                <a href="/admin/backend_users/edit/#(request.storage.authedBackendUser.id)" class="btn btn-sm btn-transparent user__settings" data-toggle="tooltip" data-placement="left" title="" data-original-title="Edit user">
+                <a href="/backend_users/edit/#(request.storage.authedBackendUser.id)" class="btn btn-sm btn-transparent user__settings" data-toggle="tooltip" data-placement="left" title="" data-original-title="Edit user">
                     <i class="fa fa-pencil"></i>
                 </a>
             </div>

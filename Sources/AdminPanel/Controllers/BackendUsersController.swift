@@ -5,13 +5,13 @@ import Flash
 import Paginator
 
 public final class BackendUsersController {
-    
+
     public let drop: Droplet
-    
+
     public init(droplet: Droplet) {
         drop = droplet
     }
-    
+
     /**
      * Logout, will logout auther user and redirect back to login
      *
@@ -20,9 +20,9 @@ public final class BackendUsersController {
      */
     public func logout(request: Request) throws -> ResponseRepresentable {
         try request.auth.unauthenticate()
-        return Response(redirect: "/admin").flash(.error, "User is logged out")
+        return Response(redirect: "/").flash(.error, "User is logged out")
     }
-    
+
     /**
      * List all backend users
      *
@@ -31,7 +31,7 @@ public final class BackendUsersController {
      */
     public func index(request: Request) throws -> ResponseRepresentable {
         try Gate.allowOrFail(request, "admin")
-        
+
         let query = try BackendUser.makeQuery()
         if let search: String = request.query?["search"]?.string {
             try query.filter("name", .contains, search)
@@ -54,9 +54,9 @@ public final class BackendUsersController {
      */
     public func create(request: Request) throws -> ResponseRepresentable {
         try Gate.allowOrFail(request, "admin")
-        
+
         let fieldset = try request.storage["_fieldset"] as? Node ?? BackendUserForm.emptyUser.makeNode(in: nil)
-        
+
         return try drop.view.make(
             "BackendUsers/edit",
             [
@@ -67,7 +67,7 @@ public final class BackendUsersController {
             for: request
         )
     }
-    
+
     /**
      * Save new user
      *
@@ -76,33 +76,33 @@ public final class BackendUsersController {
      */
     public func store(request: Request) throws -> ResponseRepresentable {
         try Gate.allowOrFail(request, "admin")
-        
+
         do {
             // Validate
             let (backendUserForm, hasErrors) = BackendUserForm.validating(request.data)
             if hasErrors {
-                let response = Response(redirect: "/admin/backend_users/create").flash(.error, "Validation error")
+                let response = Response(redirect: "/backend_users/create").flash(.error, "Validation error")
                 let fieldset = try backendUserForm.makeNode(in: nil)
                 response.storage["_fieldset"] = fieldset
                 return response
             }
-            
+
             // Store
             let backendUser = try BackendUser(form: backendUserForm, request: request)
             try backendUser.save()
-            
+
             // Send welcome mail
             if backendUserForm.sendMail {
                 let mailPw: String? = backendUserForm.randomPassword ? backendUserForm.password : nil
                 try Mailer.sendWelcomeMail(drop: drop, backendUser: backendUser, password: mailPw)
             }
-            
-            return Response(redirect: "/admin/backend_users").flash(.success, "User created")
+
+            return Response(redirect: "/backend_users").flash(.success, "User created")
         } catch {
-            return Response(redirect: "/admin/backend_users/create").flash(.error, "Failed to create user")
+            return Response(redirect: "/backend_users/create").flash(.error, "Failed to create user")
         }
     }
-    
+
     /**
      * Edit user form
      *
@@ -116,9 +116,9 @@ public final class BackendUsersController {
             try Gate.allowOrFail(request, "admin")
             try Gate.allowOrFail(request, user.role)
         }
-        
+
         let fieldset = try request.storage["_fieldset"] as? Node ?? BackendUserForm.emptyUser.makeNode(in: nil)
-        
+
         return try drop.view.make(
             "BackendUsers/edit",
             [
@@ -130,7 +130,7 @@ public final class BackendUsersController {
             for: request
         )
     }
-    
+
     /**
      * Update user
      *
@@ -143,37 +143,37 @@ public final class BackendUsersController {
         guard let id = try backendUser.assertExists().string else {
             throw Abort.notFound
         }
-        
+
         if backendUser.id != request.auth.authenticated(BackendUser.self)?.id {
             try Gate.allowOrFail(request, "admin")
             try Gate.allowOrFail(request, backendUser.role)
         }
-        
+
         do {
             // Validate
             let (backendUserForm, hasErrors) = BackendUserForm.validating(request.data)
             if hasErrors {
-                let response = Response(redirect: "/admin/backend_users/edit/" + id).flash(.error, "Validation error")
+                let response = Response(redirect: "/backend_users/edit/" + id).flash(.error, "Validation error")
                 let fieldset = try backendUserForm.makeNode(in: nil)
                 response.storage["_fieldset"] = fieldset
                 return response
             }
-            
+
             // Store
             try backendUser.fill(form: backendUserForm, request: request)
             try backendUser.save()
-            
+
             if Gate.allow(request, "admin") {
-               return Response(redirect: "/admin/backend_users").flash(.success, "User updated")
+               return Response(redirect: "/backend_users").flash(.success, "User updated")
             } else {
-               return Response(redirect: "/admin/backend_users/edit/" + id).flash(.success, "User updated")
+               return Response(redirect: "/backend_users/edit/" + id).flash(.success, "User updated")
             }
-            
+
         } catch {
-            return Response(redirect: "/admin/backend_users/edit/" + id).flash(.error, "Failed to update user")
+            return Response(redirect: "/backend_users/edit/" + id).flash(.error, "Failed to update user")
         }
     }
-    
+
     /**
      * Delete user
      *
@@ -188,10 +188,10 @@ public final class BackendUsersController {
         try Gate.allowOrFail(request, user.role)
         do {
             try user.delete()
-            return Response(redirect: "/admin/backend_users").flash(.success, "Deleted user")
+            return Response(redirect: "/backend_users").flash(.success, "Deleted user")
         } catch {
-            return Response(redirect: "/admin/backend_users").flash(.error, "Failed to delete user")
+            return Response(redirect: "/backend_users").flash(.error, "Failed to delete user")
         }
     }
- 
+
 }

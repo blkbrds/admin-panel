@@ -30,17 +30,17 @@ class ProtectMiddleware: Middleware {
             if let backendUser: BackendUser = request.auth.authenticated(BackendUser.self) {
                 if backendUser.shouldResetPassword {
 
-                    let redirectPath = "/admin/backend_users/edit/" + (backendUser.id?.string ?? "0")
+                    let redirectPath = "/backend_users/edit/" + (backendUser.id?.string ?? "0")
 
                     // Only redirect if not already there!
-                    if redirectPath != request.uri.path && request.uri.deletingLastPathComponent().path != "/admin/backend_users/update" {
+                    if redirectPath != request.uri.path && request.uri.deletingLastPathComponent().path != "/backend_users/update" {
                         return Response(redirect: redirectPath).flash(.error, "Please change your password")
                     }
                 }
 
                 try request.storage["authedBackendUser"] = backendUser.toBackendView()
             } else {
-                return Response(redirect: "/admin/login?next=" + request.uri.path).flash(.error, "Session expired login again")
+                return Response(redirect: "/login?next=" + request.uri.path).flash(.error, "Session expired login again")
             }
         } catch {
             // If local & config is true & first backend user
@@ -52,7 +52,7 @@ class ProtectMiddleware: Middleware {
                 try request.storage["authedBackendUser"] = backendUser.toBackendView()
 
             } else {
-                return Response(redirect: "/admin/login?next=" + request.uri.path).flash(.error, "Session expired login again")
+                return Response(redirect: "/login?next=" + request.uri.path).flash(.error, "Session expired login again")
             }
         }
 

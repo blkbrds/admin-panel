@@ -2,7 +2,7 @@
 
 #export("breadcrumbs") {
 <li>
-    <a href="/admin/users">Backend users</a>
+    <a href="/users">Backend users</a>
 </li>
 <li class="active">
     <span>Roles</span>
@@ -48,11 +48,11 @@
                     </td>
                     }
                     <td class="text-center">
-                        <a href="/admin/backend_users/roles/default/#(role.id)" class="btn btn-sm btn-default" data-tooltip="true" title="Set as default">
+                        <a href="/backend_users/roles/default/#(role.id)" class="btn btn-sm btn-default" data-tooltip="true" title="Set as default">
                             <span class="fa fa-heart"></span>
                             <span class="sr-only">Set as default</span>
                         </a>
-                        <a href="/admin/backend_users/roles/delete/#(role.id)" class="btn btn-sm btn-danger" data-tooltip="true" title="Delete user" data-delete="true" data-token="no-token">
+                        <a href="/backend_users/roles/delete/#(role.id)" class="btn btn-sm btn-danger" data-tooltip="true" title="Delete user" data-delete="true" data-token="no-token">
                             <span class="fa fa-times"></span>
                             <span class="sr-only">Delete user</span>
                         </a>
@@ -73,7 +73,7 @@
                 </button>
                 <h4 class="modal-title" id="roleModalLabel">Create role</h4>
             </header>
-            <form method="post" action="/admin/backend_users/roles/create">
+            <form method="post" action="/backend_users/roles/create">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="roleName" class="sr-only">Role title</label>
