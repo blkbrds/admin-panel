@@ -20,8 +20,8 @@
                 <input type="text" id="search" class="form-control input-sm action-wrap-item action-wrap-right" name="search" placeholder="Search" value="#(request.storage.query.search)"/>
             </div>
         </form>
-        
-        <a href="/admin/backend_users/create" class="btn btn-primary btn-sm pull-right">
+
+        <a href="/backend_users/create" class="btn btn-primary btn-sm pull-right">
             <span class="fa fa-user-plus"></span>
             <span class="hidden-xs">Create backend user</span>
         </a>
@@ -52,13 +52,13 @@
                     </td>
                     <td class="text-center">#(user.role)</td>
                     <td class="text-center">
-                        
+
                     #allow(request, user.role) {
-                        <a href="/admin/backend_users/edit/#(user.id)" class="btn btn-sm btn-default" data-tooltip="true" title="Edit details">
+                        <a href="/backend_users/edit/#(user.id)" class="btn btn-sm btn-default" data-tooltip="true" title="Edit details">
                             <span class="fa fa-pencil"></span>
                             <span class="sr-only">Edit details</span>
                         </a>
-                        <a href="/admin/backend_users/delete/#(user.id)" class="btn btn-sm btn-danger" data-tooltip="true" title="Delete user" data-delete="true" data-token="no-token">
+                        <a href="/backend_users/delete/#(user.id)" class="btn btn-sm btn-danger" data-tooltip="true" title="Delete user" data-delete="true" data-token="no-token">
                             <span class="fa fa-times"></span>
                             <span class="sr-only">Delete user</span>
                         </a>

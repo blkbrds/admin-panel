@@ -3,7 +3,7 @@
 #export("breadcrumbs") {
 #(request.storage.subject.name)
 <li>
-    <a href="/admin/backend_users">Backend users</a>
+    <a href="/backend_users">Backend users</a>
 </li>
 <li class="active">
     #if(backendUser) {
@@ -26,9 +26,9 @@
 
 #export("content") {
 #if(backendUser) {
-    #form:open("/admin/backend_users/update/#(backendUser.id)", "POST", false)
+    #form:open("/backend_users/update/#(backendUser.id)", "POST", false)
 } ##else() {
-    #form:open("/admin/backend_users/store", "POST", false)
+    #form:open("/backend_users/store", "POST", false)
 }
     <div class="row">
         <div class="col-xs-12 col-md-6">
@@ -43,10 +43,10 @@
                     #form:selectgroup("role", roles, fieldset, defaultRole)
                 }
 
-          #if(backendUser) {		
-          } ##else() {		
-              #form:checkboxgroup("sendEmail", "true", fieldset)		
-          } 
+          #if(backendUser) {
+          } ##else() {
+              #form:checkboxgroup("sendEmail", "true", fieldset)
+          }
 
             <h4 class="margin-top">
                 Choose password

@@ -49,11 +49,11 @@ public final class Provider: Vapor.Provider {
             leaf.stem.register(FormCheckboxGroup())
             leaf.stem.register(FormSelectGroup())
             leaf.stem.register(Allow())
-            
+
             //Paginator
             leaf.stem.register(PaginatorTag())
         }
-        
+
         droplet.storage["adminPanelConfig"] = adminPanelConfig
         Configuration.shared = adminPanelConfig
     }
@@ -61,10 +61,10 @@ public final class Provider: Vapor.Provider {
     public init(config: Config) throws {
         adminPanelConfig = try Configuration(config: config)
     }
-    
+
     public convenience init(drop: Droplet, ssoProvider: SSOProtocol? = nil) throws {
         try self.init(drop: drop)
-        
+
         adminPanelConfig.ssoProvider = ssoProvider
     }
 
@@ -75,9 +75,9 @@ public final class Provider: Vapor.Provider {
 
             let secured = droplet.grouped(Middlewares.secured)
             if adminPanelConfig.loadDashboardRoute {
-                try secured.grouped("/admin/dashboard").collection(DashboardRoutes(droplet: droplet))
+                try secured.grouped("/dashboard").collection(DashboardRoutes(droplet: droplet))
             }
-            try secured.grouped("/admin/backend_users/").collection(BackendUsersRoutes(droplet: droplet))
+            try secured.grouped("/backend_users/").collection(BackendUsersRoutes(droplet: droplet))
         }
     }
 }

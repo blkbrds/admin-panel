@@ -1,12 +1,12 @@
 # Admin Panel ✍️
 [![Swift Version](https://img.shields.io/badge/Swift-3.1-brightgreen.svg)](http://swift.org)
 [![Vapor Version](https://img.shields.io/badge/Vapor-2-F6CBCA.svg)](http://vapor.codes)
-[![Linux Build Status](https://img.shields.io/circleci/project/github/nodes-vapor/admin-panel.svg?label=Linux)](https://circleci.com/gh/nodes-vapor/admin-panel)
-[![macOS Build Status](https://img.shields.io/travis/nodes-vapor/admin-panel.svg?label=macOS)](https://travis-ci.org/nodes-vapor/admin-panel)
+[![Linux Build Status](https://img.shields.io/circleci/project/github/nodes-vapor/-panel.svg?label=Linux)](https://circleci.com/gh/nodes-vapor/-panel)
+[![macOS Build Status](https://img.shields.io/travis/nodes-vapor/-panel.svg?label=macOS)](https://travis-ci.org/nodes-vapor/-panel)
 [![codebeat badge](https://codebeat.co/badges/52c2f960-625c-4a63-ae63-52a24d747da1)](https://codebeat.co/projects/github-com-nodes-vapor-admin-panel)
-[![codecov](https://codecov.io/gh/nodes-vapor/admin-panel/branch/master/graph/badge.svg)](https://codecov.io/gh/nodes-vapor/admin-panel)
-[![Readme Score](http://readme-score-api.herokuapp.com/score.svg?url=https://github.com/nodes-vapor/admin-panel)](http://clayallsopp.github.io/readme-score?url=https://github.com/nodes-vapor/admin-panel)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/nodes-vapor/admin-panel/master/LICENSE)
+[![codecov](https://codecov.io/gh/nodes-vapor/-panel/branch/master/graph/badge.svg)](https://codecov.io/gh/nodes-vapor/-panel)
+[![Readme Score](http://readme-score-api.herokuapp.com/score.svg?url=https://github.com/nodes-vapor/-panel)](http://clayallsopp.github.io/readme-score?url=https://github.com/nodes-vapor/-panel)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/nodes-vapor/-panel/master/LICENSE)
 
 
 Build easy customizable admin features for your app!
@@ -17,7 +17,7 @@ Build easy customizable admin features for your app!
  - Reset password
  - Dashboard with easy graphs
  - SSO logins
- 
+
 ![image](https://cloud.githubusercontent.com/assets/1279756/21502899/83ff79dc-cc53-11e6-8222-40bfa773d361.png)
 
 
@@ -25,7 +25,7 @@ Build easy customizable admin features for your app!
 
 Update your `Package.swift` file.
 ```swift
-.Package(url: "https://github.com/nodes-vapor/admin-panel.git", majorVersion: 1)
+.Package(url: "https://github.com/nodes-vapor/-panel.git", majorVersion: 1)
 ```
 
 
@@ -37,8 +37,8 @@ Create config `adminpanel.json`
 ```json
 {
     "name": "Nodes Admin Panel",
-    "unauthorizedPath": "/admin/login",
-    "loginSuccessPath": "admin/dashboard",
+    "unauthorizedPath": "/login",
+    "loginSuccessPath": "/dashboard",
     "loadRoutes": true,
     "loadDashboardRoute": true,
     "profileImageFallbackUrl": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
@@ -46,7 +46,7 @@ Create config `adminpanel.json`
     "resetPasswordViewPath": "Emails/reset-password",
     "autoLoginFirstUser": false,
     "ssoRedirectUrl": "https://mysso.com",
-    "ssoCallbackPath": "/admin/ssocallback",
+    "ssoCallbackPath": "/ssocallback",
     "roles": [
         {
             "title": "Super admin",
@@ -138,7 +138,7 @@ npm install -g gulp
 
 #### Read more
 
-Wiki: https://github.com/nodes-vapor/admin-panel/wiki
+Wiki: https://github.com/nodes-vapor/-panel/wiki
 
 Github: https://github.com/nodes-frontend/nodes-ui
 

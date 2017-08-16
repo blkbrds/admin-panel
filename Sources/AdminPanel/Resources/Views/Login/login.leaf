@@ -3,13 +3,13 @@
 #export("content") {
 <div id="login" class="panel panel-default">
     <div class="panel-body">
-        
+
         #if(request.storage.adminPanel.sso) {
-        <a href="/admin/login/sso" id="alternative-login" class="sso">
+        <a href="/login/sso" id="alternative-login" class="sso">
             <span class="sr-only">Nodes SSO</span>
         </a>
         }
-        
+
         <div class="panel-heading">
             <div class="logo">
                 #embed("Layout/Partials/Elements/logo")
@@ -17,8 +17,8 @@
             <h3 class="panel-title margin-bottom">Login</h3>
         </div>
         #embed("Layout/Partials/Elements/alerts")
-        
-        <form method="POST" action="/admin/login?next=#(next)">
+
+        <form method="POST" action="/login?next=#(next)">
             <div class="form-group action-wrapper">
                 <label for="email">E-mail</label>
                 <input type="email" id="email" class="form-control" name="email" required placeholder="Insert email"/>
@@ -37,7 +37,7 @@
                     </label>
                 </div>
                 <div class="pull-right margin-vertical-sm">
-                    <a href="/admin/login/reset">Forgot password?</a>
+                    <a href="/login/reset">Forgot password?</a>
                 </div>
             </div>
 
